@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="334" id="KGk-i7-Jjw" customClass="EventImageCell" customModule="LifeDiary" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="404" height="334"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="404" height="334"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-2" translatesAutoresizingMaskIntoConstraints="NO" id="W8j-g3-PHP">
+                        <rect key="frame" x="15" y="5" width="374" height="300"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="370" id="550-9x-UCi"/>
+                            <constraint firstAttribute="height" constant="300" id="t02-oy-MPu"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ux6-4b-fgN">
+                        <rect key="frame" x="17.5" y="5" width="369" height="300"/>
+                        <connections>
+                            <action selector="imageButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="c1D-rG-MYn"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="W8j-g3-PHP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="2rf-FM-Fdj"/>
+                    <constraint firstItem="ux6-4b-fgN" firstAttribute="centerX" secondItem="W8j-g3-PHP" secondAttribute="centerX" id="DK6-6v-ssK"/>
+                    <constraint firstAttribute="bottom" secondItem="W8j-g3-PHP" secondAttribute="bottom" constant="10" id="Hgm-zt-zYg"/>
+                    <constraint firstItem="W8j-g3-PHP" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="TXw-co-4Qy"/>
+                    <constraint firstItem="ux6-4b-fgN" firstAttribute="height" secondItem="W8j-g3-PHP" secondAttribute="height" id="foz-UO-2VJ"/>
+                    <constraint firstItem="W8j-g3-PHP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="hAK-S8-J1g"/>
+                    <constraint firstItem="W8j-g3-PHP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ok1-LF-Y0s"/>
+                    <constraint firstItem="ux6-4b-fgN" firstAttribute="centerY" secondItem="W8j-g3-PHP" secondAttribute="centerY" id="uqf-mc-oXg"/>
+                    <constraint firstItem="ux6-4b-fgN" firstAttribute="width" secondItem="W8j-g3-PHP" secondAttribute="width" multiplier="0.986631" id="vkh-Za-OwZ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="eventPhoto" destination="W8j-g3-PHP" id="4Mq-ge-bly"/>
+                <outlet property="imageButton" destination="ux6-4b-fgN" id="TaV-qX-mIp"/>
+            </connections>
+            <point key="canvasLocation" x="-43.478260869565219" y="121.875"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="add-2" width="263" height="263"/>
+    </resources>
+</document>
