@@ -11,7 +11,7 @@ class EventImageCell: UITableViewCell {
     }
     
     @IBAction func imageButtonTapped(_ sender: UIButton) {
-        NotificationCenter.default.post(name:  NSNotification.Name(rawValue: "OpenImagePicker"),
+        NotificationCenter.default.post(name:  .openImagePicker,
                                         object: nil)
     }
 

@@ -14,7 +14,7 @@ class User: Object {
         self.name = name
     }
     
-    override required init() {
+    required init() {
         userId = ""
         email = ""
         name = ""

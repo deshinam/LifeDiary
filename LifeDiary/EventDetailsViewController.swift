@@ -30,11 +30,11 @@ class EventDetailsViewController: UIViewController, UITableViewDelegate, UIImage
         eventDetailsCellArray = eventDetailsCells.getDetailsViewCells(eventDetailsTableView, currentEvent)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(showCalendar(_:)),
-                                               name: NSNotification.Name(rawValue: "ShowCalendar"),
+                                               name: .showCalendar,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(addPhotoButtonTapped(_:)),
-                                               name: NSNotification.Name(rawValue: "OpenImagePicker"),
+                                               name: .openImagePicker,
                                                object: nil)
         
         let tapGesture = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
@@ -139,7 +139,6 @@ class EventDetailsViewController: UIViewController, UITableViewDelegate, UIImage
         let eventDate =  (eventDetailsTableView.cellForRow(at: indexPath[1])  as! EventDateEditCell).eventDate
         let eventDescription = (eventDetailsTableView.cellForRow(at: indexPath[2]) as! EventDetailsEditCell).descriptionTextView.text
         let errorMessage = checkEventData(eventImage: eventImage, eventDate: eventDate, eventDescription: eventDescription)
-        var newEvent: Event?
         if type == .edit {
             editedEventId = currentEvent?.id
         }

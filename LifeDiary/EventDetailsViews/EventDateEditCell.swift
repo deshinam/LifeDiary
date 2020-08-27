@@ -10,7 +10,7 @@ class EventDateEditCell: UITableViewCell, EditCellProtocol {
         customizeButton()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateDate(_:)),
-                                               name: NSNotification.Name(rawValue: "SetEventDate"),
+                                               name: .setEventDate,
                                                object: nil)
     }
     
@@ -18,8 +18,7 @@ class EventDateEditCell: UITableViewCell, EditCellProtocol {
         print ("update\(DateFormatter().getFullDate(date: (sender.userInfo?["selectedDate"] as? Date)!))")
         if let date = sender.userInfo?["selectedDate"] as? Date {
             eventDate = date
-            print ("eventData\(DateFormatter().getFullDate(date: eventDate!))")
-            setDate(eventDate)
+            setDate(eventDate as Any)
             print (DateFormatter().getFullDate(date: date))
         }
     }
@@ -29,14 +28,14 @@ class EventDateEditCell: UITableViewCell, EditCellProtocol {
     }
     
     func setDate(_ data: Any) {
-        dateText.setTitleColor(UIColor(red: 54/255, green: 54/255, blue: 54/255, alpha: 1.0), for: .normal)
-        eventDate = data as! Date
+        dateText.setTitleColor(Constants.grayColor, for: .normal)
+        eventDate = data as? Date
         dateText.setTitle(DateFormatter().getFullDate(date: eventDate!), for: .normal)
         print ("Set data")
     }
     
     @IBAction func dateButtonTapped(_ sender: UIButton) {
-        NotificationCenter.default.post(name:  NSNotification.Name(rawValue: "ShowCalendar"),
+        NotificationCenter.default.post(name:  .showCalendar,
                                         object: nil)
     }
     

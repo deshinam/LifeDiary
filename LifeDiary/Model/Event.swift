@@ -18,7 +18,7 @@ class Event: Object {
         self.userId = userId
     }
     
-    override required init() {
+    required init() {
         id = 0
         date = Date()
         details = " "

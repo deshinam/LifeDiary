@@ -7,7 +7,7 @@ struct LoginPresenter {
     
     init(loginProtocol: LoginProtocol) {
         self.lp = loginProtocol
-        GIDSignIn.sharedInstance()?.presentingViewController = lp as! UIViewController
+        GIDSignIn.sharedInstance()?.presentingViewController = lp as? UIViewController
         GIDSignIn.sharedInstance()?.restorePreviousSignIn()
     }
     

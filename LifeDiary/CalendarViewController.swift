@@ -33,7 +33,7 @@ class CalendarViewController: UIViewController {
             dc.timeZone = TimeZone(abbreviation: "EST")
             let dcDate = self.calendar.date(from: dc)!
             print (DateFormatter().getFullDate(date: dcDate))
-            NotificationCenter.default.post(name:  NSNotification.Name(rawValue: "SetEventDate"),
+            NotificationCenter.default.post(name:  .setEventDate,
                                             object: nil, userInfo: ["selectedDate": dcDate])
             self.dismiss(animated: true, completion: nil)
         }
@@ -52,10 +52,6 @@ class CalendarViewController: UIViewController {
         return dateFormatter
     }()
     
-    override func viewWillDisappear(_ animated: Bool) {
-        let selectedDay = self.selectedDay
-        print (selectedDay)
-    }
     
     private func makeContent() -> CalendarViewContent {
         let startDate = calendar.date(from: DateComponents(year: 2020, month: 01, day: 01))!

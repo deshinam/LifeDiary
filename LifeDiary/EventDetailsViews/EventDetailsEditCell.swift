@@ -18,7 +18,7 @@ class EventDetailsEditCell: UITableViewCell, EditCellProtocol, UITextViewDelegat
     }
     
     func setDate(_ data: Any) {
-        descriptionTextView.text = data as! String
+        descriptionTextView.text = data as? String
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
