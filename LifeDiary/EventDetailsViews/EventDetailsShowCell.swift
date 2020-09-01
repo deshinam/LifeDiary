@@ -5,7 +5,6 @@ class EventDetailsShowCell: UITableViewCell, EditCellProtocol {
     @IBOutlet weak var detailsLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

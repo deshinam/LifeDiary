@@ -15,11 +15,9 @@ class EventDateEditCell: UITableViewCell, EditCellProtocol {
     }
     
     @objc func updateDate(_ sender: Notification) {
-        print ("update\(DateFormatter().getFullDate(date: (sender.userInfo?["selectedDate"] as? Date)!))")
         if let date = sender.userInfo?["selectedDate"] as? Date {
             eventDate = date
             setDate(eventDate as Any)
-            print (DateFormatter().getFullDate(date: date))
         }
     }
     
@@ -31,7 +29,6 @@ class EventDateEditCell: UITableViewCell, EditCellProtocol {
         dateText.setTitleColor(Constants.grayColor, for: .normal)
         eventDate = data as? Date
         dateText.setTitle(DateFormatter().getFullDate(date: eventDate!), for: .normal)
-        print ("Set data")
     }
     
     @IBAction func dateButtonTapped(_ sender: UIButton) {

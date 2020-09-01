@@ -2,7 +2,7 @@ import UIKit
 
 class EventDetailsEditCell: UITableViewCell, EditCellProtocol, UITextViewDelegate {
     
-
+    
     @IBOutlet weak var descriptionTextView: UITextView!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -10,9 +10,8 @@ class EventDetailsEditCell: UITableViewCell, EditCellProtocol, UITextViewDelegat
         descriptionTextView.layer.borderColor = UIColor.systemGray5.cgColor
         descriptionTextView.layer.borderWidth = 2
         descriptionTextView.delegate = self
-  
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -28,6 +27,5 @@ class EventDetailsEditCell: UITableViewCell, EditCellProtocol, UITextViewDelegat
         }
         return true
     }
-    
     
 }

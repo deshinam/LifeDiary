@@ -9,11 +9,7 @@ struct EventDetailsCells {
     private let EVENT_DETAILS_EDIT_CELL = "EventDetailsEditCell"
     private let EVENT_DETAILS_SHOW_CELL = "EventDetailsShowCell"
     
-    func registerCells (_ tableView: UITableView) {
-        [EVENT_IMAGE_CELL,EVENT_DATE_EDIT_CELL,EVENT_DATE_SHOW_CELL,EVENT_DETAILS_EDIT_CELL,EVENT_DETAILS_SHOW_CELL].forEach({
-            tableView.register(UINib (nibName: $0, bundle: nil) , forCellReuseIdentifier: $0)
-        })
-    }
+
     
     func getDetailsViewCells (_ tableView: UITableView, _ event: Event? = nil) -> Dictionary<AddEventControllerType,[UITableViewCell]>? {
         var indexPath: [IndexPath] = []

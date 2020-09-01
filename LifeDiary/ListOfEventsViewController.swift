@@ -1,13 +1,9 @@
 import UIKit
 import RealmSwift
-import GoogleSignIn
 
 class ListOfEventsViewController: UIViewController, UITableViewDelegate, MainProtocol {
     
-    private var event2 = Event()
-    private var events: Results <Event>?
     private var presenter: ListOfEventsPresenter?
-    
     @IBOutlet weak var eventTableView: UITableView!
     
     override func viewDidLoad() {
@@ -18,11 +14,7 @@ class ListOfEventsViewController: UIViewController, UITableViewDelegate, MainPro
         eventTableView.delegate = self
         let listOfEventsCells = ListOfEventsCells()
         listOfEventsCells.registerCells(eventTableView)
-        presenter?.updateData()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        presenter?.updateData()
+        presenter?.updateEventData()
     }
     
     private func customizeScreen() {
@@ -37,46 +29,39 @@ class ListOfEventsViewController: UIViewController, UITableViewDelegate, MainPro
     }
     
     private func goToAddEventViewController (type: AddEventControllerType, event: Event? = nil) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let addEventVC = storyboard.instantiateViewController(identifier: "eventDetailsViewController") as! EventDetailsViewController
-        addEventVC.type = type
-        addEventVC.currentEvent = event
-        show(addEventVC, sender: nil)
+        let addDetailsViewBuilder = AddDetailsViewBuilder()
+        let builder = addDetailsViewBuilder.create(type: type, event: event) as! EventDetailsViewController
+        show(builder, sender: nil)
     }
     
-    func setEvents(events: Results <Event>?) {
-        self.events = events
-        eventTableView.reloadData()
+    func updateTableView() {
+         eventTableView.reloadData()
     }
     
     @objc func signOut (_ sender: Any) {
-        GIDSignIn.sharedInstance()?.signOut()
+        presenter?.signOut()
         navigationController?.popViewController(animated: true)
-        
     }
 }
 
 
 extension ListOfEventsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events?.count ?? 1
+        return presenter?.getEventsCount() ?? 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventCell
         
-        if let item = events?[indexPath.row] {
+        if let item = presenter?.getEventy(by: indexPath.row) {
             let df = DateFormatter()
             cell.eventDate.text = df.getDay(date: item.date)
             cell.eventMonth.text = df.getMonth(date: item.date)
             cell.eventImage.image = UIImage(data: (item.image) as Data)
             cell.eventDescription.text = item.details
-            tableView.insertRows(at: [indexPath], with: .fade)
-            
         } else {
             cell.eventDescription.text = "No items"
         }
-        
         return cell
     }
     
@@ -91,14 +76,11 @@ extension ListOfEventsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         eventTableView.isUserInteractionEnabled = true
         eventTableView.deselectRow(at: indexPath as IndexPath, animated: true)
-        let row = indexPath.row
-        if let curentEvent = events?[row] {
+        if let curentEvent = presenter?.getEventy(by: indexPath.row) {
             goToAddEventViewController (type: .show, event: curentEvent)
         }
-        
     }
     
 }

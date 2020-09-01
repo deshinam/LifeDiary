@@ -18,7 +18,6 @@ class User: Object {
         userId = ""
         email = ""
         name = ""
-        // fatalError("init() has not been implemented")
     }
     
 }

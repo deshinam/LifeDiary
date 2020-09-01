@@ -58,7 +58,6 @@ class CalendarViewController: UIViewController {
         let endDate = calendar.date(from: DateComponents(year: 2021, month: 12, day: 31))!
         
         let selectedDay = self.selectedDay
-        print (selectedDay ?? "no")
         return CalendarViewContent(
             calendar: calendar,
             visibleDateRange: startDate...endDate,
@@ -146,7 +145,6 @@ final class DayView: UIView {
     private func updateHighlightIndicator() {
         backgroundColor = isHighlighted ? UIColor.black.withAlphaComponent(0.1) : .clear
     }
-    
 }
 
 // MARK: UIAccessibility

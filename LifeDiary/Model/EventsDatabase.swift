@@ -1,24 +1,24 @@
 import Foundation
 import RealmSwift
 
-struct EventsData {
+struct EventsDatabase {
     
     private var realm = try! Realm()
     private var events: Results <Event>?
     private var subscriber: EventsProtocol?
     
-    static var shared: EventsData = EventsData()
-
+    static var shared: EventsDatabase = EventsDatabase()
+    
     private init()   {}
     
     mutating func loadEvents () -> Results <Event>?  {
         let filter = "userId=" + "\"" + AppData.sharedCurrentUser.user!.userId + "\""
-        EventsData.shared.events = realm.objects(Event.self).filter(filter)
-        if !(EventsData.shared.events!.isEmpty) {
-            EventsData.shared.events = EventsData.shared.events!.sorted(byKeyPath: "date", ascending: false)
+        EventsDatabase.shared.events = realm.objects(Event.self).filter(filter)
+        if !(EventsDatabase.shared.events!.isEmpty) {
+            EventsDatabase.shared.events = EventsDatabase.shared.events!.sorted(byKeyPath: "date", ascending: false)
         }
         
-        return EventsData.shared.events
+        return EventsDatabase.shared.events
     }
     
     mutating func saveItems ( item: Event) {
@@ -26,7 +26,7 @@ struct EventsData {
             try realm.write()  {
                 realm.add(item)
                 if subscriber != nil {
-                    subscriber!.updated()
+                    subscriber!.updateEventData()
                 }
             }
         } catch {
@@ -35,11 +35,11 @@ struct EventsData {
     }
     
     mutating func set (newSubscriber: EventsProtocol?) {
-        EventsData.shared.subscriber = newSubscriber
+        EventsDatabase.shared.subscriber = newSubscriber
     }
     
     mutating func editItem (editedEventId: Int, newItem: Event) {
-        let editedItem = EventsData.shared.events?.filter({ $0.id == editedEventId}).first
+        let editedItem = EventsDatabase.shared.events?.filter({ $0.id == editedEventId}).first
         if  editedItem != nil {
             do {
                 try realm.write()  {
@@ -47,7 +47,7 @@ struct EventsData {
                     editedItem!.details = newItem.details
                     editedItem!.image = newItem.image
                     if subscriber != nil {
-                        subscriber!.updated()
+                        subscriber!.updateEventData()
                     }
                 }
             } catch {
@@ -58,19 +58,19 @@ struct EventsData {
     
     mutating func deleteItem (item: Event) {
         
-        if let deletedItem = EventsData.shared.events?.filter({ $0.id == item.id }).first {
+        if let deletedItem = EventsDatabase.shared.events?.filter({ $0.id == item.id }).first {
             do {
-                       try realm.write()  {
-                           realm.delete(deletedItem)
-                           if subscriber != nil {
-                               subscriber!.updated()
-                           }
-                       }
-                   } catch {
-                       print (error)
-                   }
+                try realm.write()  {
+                    realm.delete(deletedItem)
+                    if subscriber != nil {
+                        subscriber!.updateEventData()
+                    }
+                }
+            } catch {
+                print (error)
+            }
         }
-       
+        
     }
     
     func nextEventId () -> Int {
@@ -81,7 +81,5 @@ struct EventsData {
 }
 
 protocol EventsProtocol {
-    
-    mutating func updated ()
-    
+    func updateEventData ()
 }
