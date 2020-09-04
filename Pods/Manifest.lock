@@ -17,11 +17,11 @@ PODS:
   - GTMSessionFetcher/Full (1.4.0):
     - GTMSessionFetcher/Core (= 1.4.0)
   - HorizonCalendar (1.2.1)
-  - Realm (4.4.1):
-    - Realm/Headers (= 4.4.1)
-  - Realm/Headers (4.4.1)
-  - RealmSwift (4.4.1):
-    - Realm (= 4.4.1)
+  - Realm (5.3.2):
+    - Realm/Headers (= 5.3.2)
+  - Realm/Headers (5.3.2)
+  - RealmSwift (5.3.2):
+    - Realm (= 5.3.2)
 
 DEPENDENCIES:
   - GoogleSignIn
@@ -44,9 +44,9 @@ SPEC CHECKSUMS:
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   HorizonCalendar: b4bfb641bce469b0fde096e3018a1305772028cc
-  Realm: 4eb04d7487bd43c0581256f40b424eafb711deff
-  RealmSwift: 3eb8924ff7100df5928c7602f71d0fec51e7c9c5
+  Realm: c6794276ca8884808ba168a22f9d71362b170b85
+  RealmSwift: 42ec6cec3170aeeda407f797f07268a7d055ebc7
 
-PODFILE CHECKSUM: 109600d98e9eaf1ec254ea7bfcc21d6ef5c699fd
+PODFILE CHECKSUM: b7b9e994cd92d7d56bfd381fb56f58f2e2e57333
 
 COCOAPODS: 1.9.3

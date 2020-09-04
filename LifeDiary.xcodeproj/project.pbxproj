@@ -273,8 +273,8 @@
 				196A36BC24794BCD0081949B /* Sources */,
 				196A36BD24794BCD0081949B /* Frameworks */,
 				196A36BE24794BCD0081949B /* Resources */,
-				9C4335C0F43439DEEAC7A08E /* [CP] Embed Pods Frameworks */,
-				2CAC6A7168F90FFA6F721FFE /* [CP] Copy Pods Resources */,
+				765097C627EF4909FA4C5F86 /* [CP] Embed Pods Frameworks */,
+				E5192F97D3D481A588B5FBEC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -338,24 +338,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2CAC6A7168F90FFA6F721FFE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LifeDiary/Pods-LifeDiary-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LifeDiary/Pods-LifeDiary-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LifeDiary/Pods-LifeDiary-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9C4335C0F43439DEEAC7A08E /* [CP] Embed Pods Frameworks */ = {
+		765097C627EF4909FA4C5F86 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -392,6 +375,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5192F97D3D481A588B5FBEC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LifeDiary/Pods-LifeDiary-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LifeDiary/Pods-LifeDiary-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LifeDiary/Pods-LifeDiary-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
