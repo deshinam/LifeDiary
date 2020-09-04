@@ -6,9 +6,9 @@
 <img src="https://github.com/deshinam/LifeDiary/blob/master/photo5305542585462402799.jpg" alt="drawing" width="240"/>
 </p>
 
-#### Tech details:
-##### 1. Architecture: MVP
-##### 2. Frameworks:
+### Tech details:
+#### 1. Architecture: MVP
+#### 2. Frameworks:
 - RealmSwift
 - GoogleSignIn
 - HorizonCalendar
