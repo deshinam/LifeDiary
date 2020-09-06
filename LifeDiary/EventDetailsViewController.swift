@@ -51,6 +51,10 @@ final class EventDetailsViewController: UIViewController, UITableViewDelegate, U
         errorLabel.isHidden = true
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     @objc func keyboardWillShow(_ sender: Notification) {
         ((eventDetailsCellArray[2]) as! EventDetailsEditCell).descriptionTextView.becomeFirstResponder()
         eventTableViewBottomConstraint.constant = eventTableViewBottomConstraintStart + keyboardHeight
