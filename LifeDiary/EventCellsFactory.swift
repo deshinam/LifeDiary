@@ -1,15 +1,15 @@
 import UIKit
 
-class EventCellsFactory {
+final class EventCellsFactory {
     
-    private let EVENT_IMAGE_CELL = "EventImageCell"
-    private let EVENT_DATE_EDIT_CELL = "EventDateEditCell"
-    private let EVENT_DATE_SHOW_CELL = "EventDateShowCell"
-    private let EVENT_DETAILS_EDIT_CELL = "EventDetailsEditCell"
-    private let EVENT_DETAILS_SHOW_CELL = "EventDetailsShowCell"
+    private let eventImageCell = "EventImageCell"
+    private let eventDateEditCell = "EventDateEditCell"
+    private let eventDateShowCell = "EventDateShowCell"
+    private let eventDetailsEditCell = "EventDetailsEditCell"
+    private let eventDetailsShowCell = "EventDetailsShowCell"
     
-    func registerCells (_ tableView: UITableView) {
-        [EVENT_IMAGE_CELL,EVENT_DATE_EDIT_CELL,EVENT_DATE_SHOW_CELL,EVENT_DETAILS_EDIT_CELL,EVENT_DETAILS_SHOW_CELL].forEach({
+    func registerCells(_ tableView: UITableView) {
+        [eventImageCell,eventDateEditCell,eventDateShowCell,eventDetailsEditCell,eventDetailsShowCell].forEach({
             tableView.register(UINib (nibName: $0, bundle: nil) , forCellReuseIdentifier: $0)
         })
     }
@@ -22,17 +22,17 @@ class EventCellsFactory {
         var detailsViewCells = [UITableViewCell]()
         switch type {
         case .create:
-            detailsViewCells = [ tableView.dequeueReusableCell(withIdentifier: EVENT_IMAGE_CELL, for: indexPath[0]),
-                                 tableView.dequeueReusableCell(withIdentifier: EVENT_DATE_EDIT_CELL, for: indexPath[1]),
-                                 tableView.dequeueReusableCell(withIdentifier: EVENT_DETAILS_EDIT_CELL, for: indexPath[2])]
+            detailsViewCells = [ tableView.dequeueReusableCell(withIdentifier: eventImageCell, for: indexPath[0]),
+                                 tableView.dequeueReusableCell(withIdentifier: eventDateEditCell, for: indexPath[1]),
+                                 tableView.dequeueReusableCell(withIdentifier: eventDetailsEditCell, for: indexPath[2])]
         case .edit:
-            detailsViewCells = [ tableView.dequeueReusableCell(withIdentifier: EVENT_IMAGE_CELL, for: indexPath[0]),
-                                 tableView.dequeueReusableCell(withIdentifier: EVENT_DATE_EDIT_CELL, for: indexPath[1]),
-                                 tableView.dequeueReusableCell(withIdentifier: EVENT_DETAILS_EDIT_CELL, for: indexPath[2])]
+            detailsViewCells = [ tableView.dequeueReusableCell(withIdentifier: eventImageCell, for: indexPath[0]),
+                                 tableView.dequeueReusableCell(withIdentifier: eventDateEditCell, for: indexPath[1]),
+                                 tableView.dequeueReusableCell(withIdentifier: eventDetailsEditCell, for: indexPath[2])]
         case .show:
-            detailsViewCells = [ tableView.dequeueReusableCell(withIdentifier: EVENT_IMAGE_CELL, for: indexPath[0]),
-                                 tableView.dequeueReusableCell(withIdentifier: EVENT_DATE_SHOW_CELL, for: indexPath[1]),
-                                 tableView.dequeueReusableCell(withIdentifier: EVENT_DETAILS_SHOW_CELL, for: indexPath[2])]
+            detailsViewCells = [ tableView.dequeueReusableCell(withIdentifier: eventImageCell, for: indexPath[0]),
+                                 tableView.dequeueReusableCell(withIdentifier: eventDateShowCell, for: indexPath[1]),
+                                 tableView.dequeueReusableCell(withIdentifier: eventDetailsShowCell, for: indexPath[2])]
         }
         
         if event != nil {

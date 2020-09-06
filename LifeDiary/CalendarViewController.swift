@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import HorizonCalendar
 
-class CalendarViewController: UIViewController {
+final class CalendarViewController: UIViewController {
     
     @IBOutlet var calendarUIView: UIView!
     private var selectedDay: Day?
@@ -32,7 +32,7 @@ class CalendarViewController: UIViewController {
             dc.day = self.selectedDay?.components.day
             dc.timeZone = TimeZone(abbreviation: "EST")
             let dcDate = self.calendar.date(from: dc)!
-            print (DateFormatter().getFullDate(date: dcDate))
+            print (DateFormatter().getFullDate(from: dcDate))
             NotificationCenter.default.post(name:  .setEventDate,
                                             object: nil, userInfo: ["selectedDate": dcDate])
             self.dismiss(animated: true, completion: nil)
@@ -150,10 +150,12 @@ final class DayView: UIView {
 // MARK: UIAccessibility
 extension DayView {
     
-    override var isAccessibilityElement: Bool {
+    override var isAccessibilityElement: Bool{
         get { true }
         set { }
     }
+    
+    //в extension нельзя обычные свойства задавать
     
     override var accessibilityLabel: String? {
         get { dayAccessibilityText ?? dayText }

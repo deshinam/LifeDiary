@@ -11,7 +11,7 @@ struct EventsDatabase {
     
     private init()   {}
     
-    mutating func loadEvents () -> Results <Event>?  {
+    mutating func loadEvents() -> Results <Event>?  {
         let filter = "userId=" + "\"" + AppData.sharedCurrentUser.user!.userId + "\""
         EventsDatabase.shared.events = realm.objects(Event.self).filter(filter)
         if !(EventsDatabase.shared.events!.isEmpty) {
@@ -21,7 +21,7 @@ struct EventsDatabase {
         return EventsDatabase.shared.events
     }
     
-    mutating func saveItems ( item: Event) {
+    mutating func saveItems(item: Event) {
         do {
             try realm.write()  {
                 realm.add(item)
@@ -34,11 +34,11 @@ struct EventsDatabase {
         }
     }
     
-    mutating func set (newSubscriber: EventsProtocol?) {
+    mutating func set(newSubscriber: EventsProtocol?) {
         EventsDatabase.shared.subscriber = newSubscriber
     }
     
-    mutating func editItem (editedEventId: Int, newItem: Event) {
+    mutating func editItem(editedEventId: Int, newItem: Event) {
         let editedItem = EventsDatabase.shared.events?.filter({ $0.id == editedEventId}).first
         if  editedItem != nil {
             do {
@@ -56,7 +56,7 @@ struct EventsDatabase {
         }
     }
     
-    mutating func deleteItem (item: Event) {
+    mutating func deleteItem(item: Event) {
         
         if let deletedItem = EventsDatabase.shared.events?.filter({ $0.id == item.id }).first {
             do {
@@ -73,13 +73,11 @@ struct EventsDatabase {
         
     }
     
-    func nextEventId () -> Int {
+    func nextEventId() -> Int {
         let id = realm.objects(Event.self).sorted(byKeyPath: "id", ascending: true).last?.id ?? -1
         return id + 1
     }
     
 }
 
-protocol EventsProtocol {
-    func updateEventData ()
-}
+

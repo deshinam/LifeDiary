@@ -1,7 +1,7 @@
 import UIKit
 import RealmSwift
 
-class ListOfEventsViewController: UIViewController, UITableViewDelegate, MainProtocol {
+final class ListOfEventsViewController: UIViewController, UITableViewDelegate, MainProtocol {
     
     private var presenter: ListOfEventsPresenter?
     @IBOutlet weak var eventTableView: UITableView!
@@ -28,7 +28,7 @@ class ListOfEventsViewController: UIViewController, UITableViewDelegate, MainPro
         goToAddEventViewController(type: .create)
     }
     
-    private func goToAddEventViewController (type: AddEventControllerType, event: Event? = nil) {
+    private func goToAddEventViewController(type: AddEventControllerType, event: Event? = nil) {
         let addDetailsViewBuilder = AddDetailsViewBuilder()
         let builder = addDetailsViewBuilder.create(type: type, event: event) as! EventDetailsViewController
         show(builder, sender: nil)
@@ -38,7 +38,7 @@ class ListOfEventsViewController: UIViewController, UITableViewDelegate, MainPro
          eventTableView.reloadData()
     }
     
-    @objc func signOut (_ sender: Any) {
+    @objc func signOut(_ sender: Any) {
         presenter?.signOut()
         navigationController?.popViewController(animated: true)
     }
@@ -56,7 +56,7 @@ extension ListOfEventsViewController: UITableViewDataSource {
         if let item = presenter?.getEventy(by: indexPath.row) {
             let df = DateFormatter()
             cell.eventDate.text = df.getDay(date: item.date)
-            cell.eventMonth.text = df.getMonth(date: item.date)
+            cell.eventMonth.text = df.getMonth(from: item.date)
             cell.eventImage.image = UIImage(data: (item.image) as Data)
             cell.eventDescription.text = item.details
         } else {

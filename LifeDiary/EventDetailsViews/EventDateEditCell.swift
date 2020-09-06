@@ -1,6 +1,6 @@
 import UIKit
 
-class EventDateEditCell: UITableViewCell, EditCellProtocol {
+final class EventDateEditCell: UITableViewCell, EditCellProtocol {
     
     @IBOutlet weak var dateText: UIButton!
     var eventDate: Date?
@@ -28,7 +28,7 @@ class EventDateEditCell: UITableViewCell, EditCellProtocol {
     func setDate(_ data: Any) {
         dateText.setTitleColor(Constants.grayColor, for: .normal)
         eventDate = data as? Date
-        dateText.setTitle(DateFormatter().getFullDate(date: eventDate!), for: .normal)
+        dateText.setTitle(DateFormatter().getFullDate(from: eventDate!), for: .normal)
     }
     
     @IBAction func dateButtonTapped(_ sender: UIButton) {
@@ -36,7 +36,7 @@ class EventDateEditCell: UITableViewCell, EditCellProtocol {
                                         object: nil)
     }
     
-    private func customizeButton () {
+    private func customizeButton() {
         dateText.layer.cornerRadius = 5
         dateText.layer.borderColor = UIColor.systemGray5.cgColor
         dateText.layer.borderWidth = 2

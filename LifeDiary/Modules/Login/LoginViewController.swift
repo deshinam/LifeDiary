@@ -1,7 +1,7 @@
 import UIKit
 import GoogleSignIn
 
-class LoginController: UIViewController {
+final class LoginViewController: UIViewController {
     
     @IBOutlet weak var signInButton: GIDSignInButton!
     private var loginPresenter: LoginPresenter?
@@ -9,7 +9,10 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loginPresenter = LoginPresenter(loginProtocol: self)
-        loginPresenter!.viewDidLoad()
+        if loginPresenter != nil {
+            loginPresenter!.viewDidLoad()
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -23,8 +26,8 @@ class LoginController: UIViewController {
     }
 }
 
-extension LoginController: LoginProtocol {
-    func goToApp () {
+extension LoginViewController: LoginViewInput {
+    func goToApp() {
         self.performSegue(withIdentifier: "goToApp", sender: self)
     }
 }

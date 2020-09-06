@@ -2,7 +2,7 @@ import Foundation
 import RealmSwift
 typealias CheckResult = (success: Bool, message: String)
 
-class AddEventPresenter {
+final class AddEventPresenter {
     
     private var addEventProtocol: AddEventProtocol
     private var database: EventsDatabase = EventsDatabase.shared
@@ -19,11 +19,11 @@ class AddEventPresenter {
         self.addEventProtocol = addEventProtocol
     }
 
-    func set (actionType: AddEventControllerType) {
+    func set(actionType: AddEventControllerType) {
         self.actionType = actionType
     }
     
-    func deleteItem () {
+    func deleteItem() {
         if currentEvent != nil {
             database.deleteItem(item: currentEvent!)
         }
@@ -37,7 +37,7 @@ class AddEventPresenter {
         addEventProtocol.reloadData()
     }
     
-    private func checkEventData (eventImage: NSData? = nil , eventDate: Date? = nil, eventDescription: String? = "") -> CheckResult {
+    private func checkEventData(eventImage: NSData? = nil , eventDate: Date? = nil, eventDescription: String? = "") -> CheckResult {
         var errorMesage = ""
         if  eventDate == nil {
             errorMesage = errorMesage + " " + ErrorMessage.noDate.rawValue + ","
@@ -82,7 +82,7 @@ class AddEventPresenter {
         currentEvent = event
     }
     
-    func actionButtonTapped () {
+    func actionButtonTapped() {
         switch actionType {
         case .create, .edit:
             save()
@@ -107,13 +107,4 @@ class AddEventPresenter {
     }
 }
 
-protocol AddEventProtocol {
-    func reloadData()
-    func getInputData() -> TempEventData
-    func showMessage(text: String)
-    func hideErrorMessage()
-    func dismiss()
-    func getTableView() -> UITableView?
-    func setCells(eventDetailsCellArray: [UITableViewCell])
-    func setActionButtonTitle(title: String)
-}
+

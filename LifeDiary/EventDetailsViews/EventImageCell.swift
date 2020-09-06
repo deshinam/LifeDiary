@@ -1,6 +1,6 @@
 import UIKit
 
-class EventImageCell: UITableViewCell {
+final class EventImageCell: UITableViewCell {
     
     @IBOutlet weak var eventPhoto: UIImageView!
    

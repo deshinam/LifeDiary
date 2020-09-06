@@ -1,6 +1,6 @@
 import UIKit
 
-class EventCell: UITableViewCell {
+final class EventCell: UITableViewCell {
     
     @IBOutlet weak var eventDate: UILabel!
     @IBOutlet weak var eventMonth: UILabel!

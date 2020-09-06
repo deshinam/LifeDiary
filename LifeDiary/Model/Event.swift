@@ -1,7 +1,7 @@
 import Foundation
 import RealmSwift
 
-class Event: Object {
+final class Event: Object {
     
     @objc dynamic var id: Int
     @objc dynamic var date: Date
@@ -9,7 +9,7 @@ class Event: Object {
     @objc dynamic var image: NSData
     @objc dynamic var userId: String
     
-    init (id: Int, date: Date, details: String, image: NSData, userId: String) {
+    init(id: Int, date: Date, details: String, image: NSData, userId: String) {
         self.id = id
         self.date = date
         self.details = details

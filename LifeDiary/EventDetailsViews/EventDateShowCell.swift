@@ -1,6 +1,6 @@
 import UIKit
 
-class EventDateShowCell: UITableViewCell, EditCellProtocol {
+final class EventDateShowCell: UITableViewCell, EditCellProtocol {
     
     @IBOutlet weak var dateLabel: UILabel!
     override func awakeFromNib() {
@@ -12,7 +12,7 @@ class EventDateShowCell: UITableViewCell, EditCellProtocol {
     }
     
     func setDate(_ data: Any) {
-        dateLabel.text = DateFormatter().getFullDate(date: data as! Date)
+        dateLabel.text = DateFormatter().getFullDate(from: data as! Date)
     }
     
 }

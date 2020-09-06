@@ -1,6 +1,6 @@
 import UIKit
 
-class EventDetailsShowCell: UITableViewCell, EditCellProtocol {
+final class EventDetailsShowCell: UITableViewCell, EditCellProtocol {
 
     @IBOutlet weak var detailsLabel: UILabel!
     override func awakeFromNib() {

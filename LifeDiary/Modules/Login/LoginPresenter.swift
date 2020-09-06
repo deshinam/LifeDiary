@@ -1,9 +1,9 @@
 import Foundation
 import GoogleSignIn
 
-class LoginPresenter: NSObject {
+final class LoginPresenter: NSObject {
     
-    private var lp : LoginProtocol?
+    private var view : LoginViewInput?
     
     convenience override init() {
         self.init(loginProtocol: nil)
@@ -11,16 +11,16 @@ class LoginPresenter: NSObject {
     
     func viewDidLoad() {
         if self.signIn() {
-            lp?.goToApp()
+            view?.goToApp()
         }
     }
     
-    init(loginProtocol: LoginProtocol?) {
+    init(loginProtocol: LoginViewInput?) {
         super.init()
-        self.lp = loginProtocol
-        GIDSignIn.sharedInstance().clientID = Constants.googleSDKClientId
+        self.view = loginProtocol
+        GIDSignIn.sharedInstance().clientID = Constants.googleSDKClientId1 + Constants.googleSDKClientId2
         GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance()?.presentingViewController = lp as? UIViewController
+        GIDSignIn.sharedInstance()?.presentingViewController = view as? UIViewController
         GIDSignIn.sharedInstance()?.restorePreviousSignIn()
     }
     
@@ -33,12 +33,18 @@ extension LoginPresenter: GIDSignInDelegate {
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if error == nil {
-            let id = user.userID
-            let fullName = user.profile.name
-            let email = user.profile.email!
-            let currentUser = User(userId: id!, email: email, name: fullName!)
-            AppData.sharedCurrentUser.user = currentUser
-            lp?.goToApp()
+            guard
+                let id = user.userID,
+                let fullName = user.profile.name,
+                let email = user.profile.email
+            else {
+                return
+            }
+            AppData.sharedCurrentUser.user =  User(userId: id,
+                                                     email: email,
+                                                     name: fullName)
+            view?.goToApp()
+
         } else {
             print("\(error.localizedDescription)")
         }
@@ -46,6 +52,4 @@ extension LoginPresenter: GIDSignInDelegate {
     
 }
 
-protocol LoginProtocol {
-    func goToApp()
-}
+

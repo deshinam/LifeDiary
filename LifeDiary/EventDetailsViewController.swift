@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 typealias TempEventData = (image: NSData?, date: Date?, details: String?, userId: String)
 
-class EventDetailsViewController: UIViewController, UITableViewDelegate, UIImagePickerControllerDelegate, AddEventProtocol, UINavigationControllerDelegate {
+final class EventDetailsViewController: UIViewController, UITableViewDelegate, UIImagePickerControllerDelegate, AddEventProtocol, UINavigationControllerDelegate {
     
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var eventDetailsTableView: UITableView!
@@ -18,7 +18,6 @@ class EventDetailsViewController: UIViewController, UITableViewDelegate, UIImage
     private var image: NSData?
     private let keyboardHeight: CGFloat = 200
     private let eventTableViewBottomConstraintStart: CGFloat = 30
-    var supervalue = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,37 +43,36 @@ class EventDetailsViewController: UIViewController, UITableViewDelegate, UIImage
     }
     
     private func customizeScreen() {
-        self.navigationItem.backBarButtonItem?.title = "Close"
-        self.navigationController?.navigationBar.tintColor = .systemTeal
+        navigationItem.backBarButtonItem?.title = "Close"
+        navigationController?.navigationBar.tintColor = .systemTeal
         actionButton = UIBarButtonItem(title: "", style: .done, target: self, action: #selector(actionButtonTapped(_:)))
         
-        self.navigationItem.rightBarButtonItem = actionButton
+        navigationItem.rightBarButtonItem = actionButton
         errorLabel.isHidden = true
     }
     
-    @objc func keyboardWillShow (_ sender: Notification) {
+    @objc func keyboardWillShow(_ sender: Notification) {
         ((eventDetailsCellArray[2]) as! EventDetailsEditCell).descriptionTextView.becomeFirstResponder()
         eventTableViewBottomConstraint.constant = eventTableViewBottomConstraintStart + keyboardHeight
         let offset = CGPoint(x: 0, y: eventDetailsTableView.contentSize.height)
         eventDetailsTableView.setContentOffset(offset, animated: true)
     }
     
-    @objc func keyboardWillHide (_ sender: Notification) {
+    @objc func keyboardWillHide(_ sender: Notification) {
         eventTableViewBottomConstraint.constant = eventTableViewBottomConstraintStart
     }
     
     @objc func showCalendar(_ sender: Any?) {
-        supervalue = 5
         let calendarVC = UIStoryboard().getControllerBy(id: "calendarViewController")
         calendarVC.modalPresentationStyle = .popover
-        self.present(calendarVC, animated: true, completion: nil)
+        present(calendarVC, animated: true, completion: nil)
     }
     
     @objc private func actionButtonTapped(_ sender: UIBarButtonItem) {
         addEventPresenter?.actionButtonTapped()
     }
     
-    func reloadData () {
+    func reloadData() {
         eventDetailsTableView.reloadData()
     }
     
@@ -111,7 +109,7 @@ class EventDetailsViewController: UIViewController, UITableViewDelegate, UIImage
         self.eventDetailsCellArray = eventDetailsCellArray
     }
     
-    @objc private func addPhotoButtonTapped (_ sender: Any?) {
+    @objc private func addPhotoButtonTapped(_ sender: Any?) {
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
             imagePicker.delegate = self
             imagePicker.sourceType = .savedPhotosAlbum

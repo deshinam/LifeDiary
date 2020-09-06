@@ -2,7 +2,7 @@ import Foundation
 import RealmSwift
 import GoogleSignIn
 
-class ListOfEventsPresenter: EventsProtocol {
+final class ListOfEventsPresenter: EventsProtocol {
     
     private var vc: MainProtocol
     private var database: EventsDatabase = EventsDatabase.shared

@@ -1,6 +1,6 @@
 import UIKit
 
-class EventDetailsEditCell: UITableViewCell, EditCellProtocol, UITextViewDelegate {
+final class EventDetailsEditCell: UITableViewCell, EditCellProtocol, UITextViewDelegate {
     
     
     @IBOutlet weak var descriptionTextView: UITextView!

@@ -35,14 +35,16 @@
 		C77C460024D30A2900C0B93A /* EventDetailsShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77C45FE24D30A2900C0B93A /* EventDetailsShowCell.swift */; };
 		C77C460124D30A2900C0B93A /* EventDetailsShowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C77C45FF24D30A2900C0B93A /* EventDetailsShowCell.xib */; };
 		C77C460424D4147900C0B93A /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77C460324D4147900C0B93A /* CalendarViewController.swift */; };
-		C77C460824D83C7300C0B93A /* EditCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77C460724D83C7300C0B93A /* EditCellProtocol.swift */; };
 		C77C460D24DA7BFA00C0B93A /* ListOfEventsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77C460C24DA7BFA00C0B93A /* ListOfEventsCells.swift */; };
 		C77C461124DAE4F800C0B93A /* DateFormatter+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77C461024DAE4F800C0B93A /* DateFormatter+String.swift */; };
 		C792FFA824EADE5900F95775 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C792FFA724EADE5900F95775 /* Constants.swift */; };
-		C79DCEE724CAC9BC00163DD1 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79DCEE624CAC9BC00163DD1 /* LoginController.swift */; };
+		C79DCEE724CAC9BC00163DD1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79DCEE624CAC9BC00163DD1 /* LoginViewController.swift */; };
 		C79DCEE924CC47A100163DD1 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79DCEE824CC47A100163DD1 /* ErrorMessage.swift */; };
 		C79DCEEB24CED3F600163DD1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79DCEEA24CED3F600163DD1 /* User.swift */; };
 		C79DCEED24CEDC8C00163DD1 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79DCEEC24CEDC8C00163DD1 /* AppData.swift */; };
+		C7D690E5250517FD0076AB2B /* LoginProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D690E4250517FD0076AB2B /* LoginProtocols.swift */; };
+		C7D690E7250519300076AB2B /* EventDetailsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D690E6250519300076AB2B /* EventDetailsProtocols.swift */; };
+		C7D690E925051C340076AB2B /* EventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D690E825051C340076AB2B /* EventsProtocol.swift */; };
 		C7FD72A824FA87D100A9BBEA /* AddDetailsViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FD72A724FA87D100A9BBEA /* AddDetailsViewBuilder.swift */; };
 		C7FD72AA24FBE64F00A9BBEA /* StoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FD72A924FBE64F00A9BBEA /* StoryboardExtension.swift */; };
 		C7FD72AC24FD124700A9BBEA /* EventCellsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FD72AB24FD124700A9BBEA /* EventCellsFactory.swift */; };
@@ -80,14 +82,16 @@
 		C77C45FE24D30A2900C0B93A /* EventDetailsShowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsShowCell.swift; sourceTree = "<group>"; };
 		C77C45FF24D30A2900C0B93A /* EventDetailsShowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailsShowCell.xib; sourceTree = "<group>"; };
 		C77C460324D4147900C0B93A /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		C77C460724D83C7300C0B93A /* EditCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCellProtocol.swift; sourceTree = "<group>"; };
 		C77C460C24DA7BFA00C0B93A /* ListOfEventsCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfEventsCells.swift; sourceTree = "<group>"; };
 		C77C461024DAE4F800C0B93A /* DateFormatter+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+String.swift"; sourceTree = "<group>"; };
 		C792FFA724EADE5900F95775 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		C79DCEE624CAC9BC00163DD1 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		C79DCEE624CAC9BC00163DD1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C79DCEE824CC47A100163DD1 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		C79DCEEA24CED3F600163DD1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C79DCEEC24CEDC8C00163DD1 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		C7D690E4250517FD0076AB2B /* LoginProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProtocols.swift; sourceTree = "<group>"; };
+		C7D690E6250519300076AB2B /* EventDetailsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsProtocols.swift; sourceTree = "<group>"; };
+		C7D690E825051C340076AB2B /* EventsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsProtocol.swift; sourceTree = "<group>"; };
 		C7FD72A724FA87D100A9BBEA /* AddDetailsViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDetailsViewBuilder.swift; sourceTree = "<group>"; };
 		C7FD72A924FBE64F00A9BBEA /* StoryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardExtension.swift; sourceTree = "<group>"; };
 		C7FD72AB24FD124700A9BBEA /* EventCellsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellsFactory.swift; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 		196A36C224794BCD0081949B /* LifeDiary */ = {
 			isa = PBXGroup;
 			children = (
+				C7D690E32505119D0076AB2B /* Application */,
 				C77C460F24DAE4B300C0B93A /* Utilits */,
 				C7FD72AF24FECBB300A9BBEA /* Modules */,
 				19D0029A247ACCED003E9D8A /* Model */,
@@ -153,6 +158,7 @@
 				19D0029B247ADA9C003E9D8A /* Event.swift */,
 				1980E68F249F7A1B0096D534 /* EventsDatabase.swift */,
 				C79DCEE824CC47A100163DD1 /* ErrorMessage.swift */,
+				C7D690E825051C340076AB2B /* EventsProtocol.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -178,7 +184,6 @@
 				C77C45FB24D30A1700C0B93A /* EventDetailsEditCell.xib */,
 				C77C45FE24D30A2900C0B93A /* EventDetailsShowCell.swift */,
 				C77C45FF24D30A2900C0B93A /* EventDetailsShowCell.xib */,
-				C77C460724D83C7300C0B93A /* EditCellProtocol.swift */,
 			);
 			path = EventDetailsViews;
 			sourceTree = "<group>";
@@ -210,14 +215,21 @@
 		C77C460F24DAE4B300C0B93A /* Utilits */ = {
 			isa = PBXGroup;
 			children = (
-				196A36C324794BCD0081949B /* AppDelegate.swift */,
-				196A36C524794BCD0081949B /* SceneDelegate.swift */,
 				C77C461024DAE4F800C0B93A /* DateFormatter+String.swift */,
 				C792FFA724EADE5900F95775 /* Constants.swift */,
 				C7FD72A924FBE64F00A9BBEA /* StoryboardExtension.swift */,
 			);
 			name = Utilits;
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C7D690E32505119D0076AB2B /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				196A36C324794BCD0081949B /* AppDelegate.swift */,
+				196A36C524794BCD0081949B /* SceneDelegate.swift */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 		C7FD72AD24FECB3000A9BBEA /* ListOfEvents */ = {
@@ -246,8 +258,9 @@
 			isa = PBXGroup;
 			children = (
 				C71E4F3024D2F0DC00B907EF /* LoginPresenter.swift */,
-				C79DCEE624CAC9BC00163DD1 /* LoginController.swift */,
+				C79DCEE624CAC9BC00163DD1 /* LoginViewController.swift */,
 				C71E4F2E24D1DECD00B907EF /* GoogleSignIn.swift */,
+				C7D690E4250517FD0076AB2B /* LoginProtocols.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -258,6 +271,7 @@
 				1980E691249F7ECC0096D534 /* AddEventPresenter.swift */,
 				C77C460924D9DC5D00C0B93A /* EventDetailsViewController */,
 				C71E4F2C24D1942F00B907EF /* AddEventControllerType.swift */,
+				C7D690E6250519300076AB2B /* EventDetailsProtocols.swift */,
 			);
 			path = EventDetails;
 			sourceTree = "<group>";
@@ -405,7 +419,7 @@
 				C77C45EE24D3067300C0B93A /* EventImageCell.swift in Sources */,
 				196A36C824794BCD0081949B /* ListOfEventsViewController.swift in Sources */,
 				C77C461124DAE4F800C0B93A /* DateFormatter+String.swift in Sources */,
-				C79DCEE724CAC9BC00163DD1 /* LoginController.swift in Sources */,
+				C79DCEE724CAC9BC00163DD1 /* LoginViewController.swift in Sources */,
 				C77C45F824D308CC00C0B93A /* EventDateShowCell.swift in Sources */,
 				C71E4F3124D2F0DC00B907EF /* LoginPresenter.swift in Sources */,
 				C77C460024D30A2900C0B93A /* EventDetailsShowCell.swift in Sources */,
@@ -416,7 +430,7 @@
 				1980E690249F7A1B0096D534 /* EventsDatabase.swift in Sources */,
 				C792FFA824EADE5900F95775 /* Constants.swift in Sources */,
 				C79DCEEB24CED3F600163DD1 /* User.swift in Sources */,
-				C77C460824D83C7300C0B93A /* EditCellProtocol.swift in Sources */,
+				C7D690E5250517FD0076AB2B /* LoginProtocols.swift in Sources */,
 				C79DCEE924CC47A100163DD1 /* ErrorMessage.swift in Sources */,
 				1980E68E249F70690096D534 /* ListOfEventsPresenter.swift in Sources */,
 				196A36C624794BCD0081949B /* SceneDelegate.swift in Sources */,
@@ -428,6 +442,8 @@
 				C77C45FC24D30A1700C0B93A /* EventDetailsEditCell.swift in Sources */,
 				C77C45F424D308B400C0B93A /* EventDateEditCell.swift in Sources */,
 				1980E692249F7ECC0096D534 /* AddEventPresenter.swift in Sources */,
+				C7D690E925051C340076AB2B /* EventsProtocol.swift in Sources */,
+				C7D690E7250519300076AB2B /* EventDetailsProtocols.swift in Sources */,
 				C79DCEED24CEDC8C00163DD1 /* AppData.swift in Sources */,
 				C7FD72A824FA87D100A9BBEA /* AddDetailsViewBuilder.swift in Sources */,
 			);

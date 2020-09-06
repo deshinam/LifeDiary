@@ -1,5 +1,4 @@
 import UIKit
-import CoreData
 import RealmSwift
 import GoogleSignIn
 
