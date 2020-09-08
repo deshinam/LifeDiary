@@ -3,18 +3,21 @@ import GoogleSignIn
 
 final class LoginViewController: UIViewController {
     
-    @IBOutlet weak var signInButton: GIDSignInButton!
+    // MARK:  - IBOutlets
+    @IBOutlet private weak var signInButton: GIDSignInButton!
+    
+    // MARK:  - Private properties
     private var loginPresenter: LoginPresenter?
     
+    // MARK:  - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         loginPresenter = LoginPresenter(loginProtocol: self)
         if loginPresenter != nil {
             loginPresenter!.viewDidLoad()
         }
-        
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)

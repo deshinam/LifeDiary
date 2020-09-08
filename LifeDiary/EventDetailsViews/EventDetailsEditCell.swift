@@ -1,9 +1,11 @@
 import UIKit
 
-final class EventDetailsEditCell: UITableViewCell, EditCellProtocol, UITextViewDelegate {
+final class EventDetailsEditCell: UITableViewCell, UITextViewDelegate {
     
-    
+    // MARK:  - IBOutlets
     @IBOutlet weak var descriptionTextView: UITextView!
+    
+    // MARK:  - Lyfecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         descriptionTextView.layer.cornerRadius = 5
@@ -12,12 +14,9 @@ final class EventDetailsEditCell: UITableViewCell, EditCellProtocol, UITextViewD
         descriptionTextView.delegate = self
     }
     
+    // MARK:  - Public Methods
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-    }
-    
-    func setDate(_ data: Any) {
-        descriptionTextView.text = data as? String
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -27,5 +26,10 @@ final class EventDetailsEditCell: UITableViewCell, EditCellProtocol, UITextViewD
         }
         return true
     }
-    
+}
+
+extension EventDetailsEditCell: EditCellProtocol {
+    func setDate(_ data: Any) {
+        descriptionTextView.text = data as? String
+    }
 }

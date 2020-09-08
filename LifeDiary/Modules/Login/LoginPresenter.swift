@@ -3,18 +3,10 @@ import GoogleSignIn
 
 final class LoginPresenter: NSObject {
     
+    // MARK:  - Private properties
     private weak var view : LoginViewInput?
-    
-    convenience override init() {
-        self.init(loginProtocol: nil)
-    }
-    
-    func viewDidLoad() {
-        if self.signIn() {
-            view?.goToApp()
-        }
-    }
-    
+
+    // MARK:  - Initializers
     init(loginProtocol: LoginViewInput?) {
         super.init()
         self.view = loginProtocol
@@ -24,13 +16,24 @@ final class LoginPresenter: NSObject {
         GIDSignIn.sharedInstance()?.restorePreviousSignIn()
     }
     
-    func signIn() -> Bool {
+    convenience override init() {
+        self.init(loginProtocol: nil)
+    }
+    
+    // MARK:  - Lifecycle
+    func viewDidLoad() {
+        if self.signIn() {
+            view?.goToApp()
+        }
+    }
+
+    // MARK:  - Private Methods
+    private func signIn() -> Bool {
         return GoogleSignIn().toggleAuthUI()
     }
 }
 
 extension LoginPresenter: GIDSignInDelegate {
-    
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if error == nil {
             guard

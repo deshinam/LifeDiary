@@ -3,10 +3,12 @@ import UIKit
 
 struct ListOfEventsCells {
     
-    private let EVENT_CELL_OVERVIEW = "EventCell"
+    // MARK:  - Private Properties
+    private let eventCellOverview = "EventCell"
     
+    // MARK:  - Public Methods
     func registerCells(_ tableView: UITableView) {
-        tableView.register(UINib (nibName: EVENT_CELL_OVERVIEW, bundle: nil) , forCellReuseIdentifier: EVENT_CELL_OVERVIEW)
+        tableView.register(UINib (nibName: eventCellOverview, bundle: nil) , forCellReuseIdentifier: eventCellOverview)
     }
 
 }

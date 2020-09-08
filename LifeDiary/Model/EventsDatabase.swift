@@ -3,14 +3,18 @@ import RealmSwift
 
 struct EventsDatabase {
     
+    // MARK:  - Private Properties
     private var realm = try! Realm()
     private var events: Results <Event>?
     private var subscriber: EventsProtocol?
     
+    // MARK:  - Public Properties
     static var shared: EventsDatabase = EventsDatabase()
     
+    // MARK:  - Initializers
     private init()   {}
     
+    // MARK:  - Public Methods
     mutating func loadEvents() -> Results <Event>?  {
         let filter = "userId=" + "\"" + AppData.sharedCurrentUser.user!.userId + "\""
         EventsDatabase.shared.events = realm.objects(Event.self).filter(filter)

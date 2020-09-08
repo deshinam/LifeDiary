@@ -1,7 +1,6 @@
 import Foundation
 import RealmSwift
 
-
 final class User: Object {
     
     @objc dynamic var userId: String

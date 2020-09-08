@@ -6,10 +6,10 @@ final class Event: Object {
     @objc dynamic var id: Int
     @objc dynamic var date: Date
     @objc dynamic var details: String
-    @objc dynamic var image: NSData
+    @objc dynamic var image: Data
     @objc dynamic var userId: String
     
-    init(id: Int, date: Date, details: String, image: NSData, userId: String) {
+    init(id: Int, date: Date, details: String, image: Data, userId: String) {
         self.id = id
         self.date = date
         self.details = details
@@ -21,7 +21,7 @@ final class Event: Object {
         id = 0
         date = Date()
         details = " "
-        image = NSData()
+        image = Data()
         userId = ""
     }
     

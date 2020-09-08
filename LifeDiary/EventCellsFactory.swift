@@ -2,12 +2,14 @@ import UIKit
 
 final class EventCellsFactory {
     
+    // MARK:  - Private Properties
     private let eventImageCell = "EventImageCell"
     private let eventDateEditCell = "EventDateEditCell"
     private let eventDateShowCell = "EventDateShowCell"
     private let eventDetailsEditCell = "EventDetailsEditCell"
     private let eventDetailsShowCell = "EventDetailsShowCell"
     
+    // MARK:  - Public Methods
     func registerCells(_ tableView: UITableView) {
         [eventImageCell,eventDateEditCell,eventDateShowCell,eventDetailsEditCell,eventDetailsShowCell].forEach({
             tableView.register(UINib (nibName: $0, bundle: nil) , forCellReuseIdentifier: $0)
@@ -43,7 +45,6 @@ final class EventCellsFactory {
                 (detailsViewCells[0] as! EventImageCell).imageButton.isHidden = true
             }
         }
-        
         return detailsViewCells
     }
 }

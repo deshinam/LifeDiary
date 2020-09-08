@@ -3,9 +3,13 @@ import RealmSwift
 
 final class ListOfEventsViewController: UIViewController, UITableViewDelegate, MainProtocol {
     
-    private var presenter: ListOfEventsPresenter?
-    @IBOutlet weak var eventTableView: UITableView!
+    // MARK:  - IBOutlets
+    @IBOutlet private weak var eventTableView: UITableView!
     
+    // MARK:  - Private Properties
+    private var presenter: ListOfEventsPresenter?
+    
+    // MARK:  - Lyfecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         customizeScreen()
@@ -17,15 +21,17 @@ final class ListOfEventsViewController: UIViewController, UITableViewDelegate, M
         presenter?.updateEventData()
     }
     
+    // MARK:  - Public Methods
+    func updateTableView() {
+         eventTableView.reloadData()
+    }
+    
+    // MARK:  - Private Methods
     private func customizeScreen() {
         navigationController?.navigationBar.barTintColor = UIColor.white
         self.navigationItem.setHidesBackButton(true, animated: true)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign out", style: .done, target: self, action: #selector(signOut(_:)))
         self.navigationItem.leftBarButtonItem?.tintColor = .systemTeal
-    }
-    
-    @IBAction func addEventButtonTapped(_ sender: UIBarButtonItem) {
-        goToAddEventViewController(type: .create)
     }
     
     private func goToAddEventViewController(type: AddEventControllerType, event: Event? = nil) {
@@ -34,17 +40,18 @@ final class ListOfEventsViewController: UIViewController, UITableViewDelegate, M
         show(builder, sender: nil)
     }
     
-    func updateTableView() {
-         eventTableView.reloadData()
-    }
-    
-    @objc func signOut(_ sender: Any) {
+    @objc private func signOut(_ sender: Any) {
         presenter?.signOut()
         navigationController?.popViewController(animated: true)
     }
+    
+    // MARK:  - IBActions
+    @IBAction private func addEventButtonTapped(_ sender: UIBarButtonItem) {
+        goToAddEventViewController(type: .create)
+    }
 }
 
-
+// MARK:  - Table View Data Source
 extension ListOfEventsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter?.getEventsCount() ?? 1

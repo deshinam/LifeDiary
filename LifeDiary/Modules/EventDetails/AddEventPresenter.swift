@@ -4,6 +4,7 @@ typealias CheckResult = (success: Bool, message: String)
 
 final class AddEventPresenter {
     
+    // MARK:  - Private Properties
     private var addEventProtocol: AddEventProtocol
     private var database: EventsDatabase = EventsDatabase.shared
     private var currentEvent: Event?
@@ -15,18 +16,14 @@ final class AddEventPresenter {
         }
     }
     
+     // MARK:  - Initializers
     init (addEventProtocol: AddEventProtocol) {
         self.addEventProtocol = addEventProtocol
     }
 
+    // MARK:  - Public Methods
     func set(actionType: AddEventControllerType) {
         self.actionType = actionType
-    }
-    
-    func deleteItem() {
-        if currentEvent != nil {
-            database.deleteItem(item: currentEvent!)
-        }
     }
     
     func updateUI() {
@@ -37,24 +34,13 @@ final class AddEventPresenter {
         addEventProtocol.reloadData()
     }
     
-    private func checkEventData(eventImage: NSData? = nil , eventDate: Date? = nil, eventDescription: String? = "") -> CheckResult {
-        var errorMesage = ""
-        if  eventDate == nil {
-            errorMesage = errorMesage + " " + ErrorMessage.noDate.rawValue + ","
+    func deleteItem() {
+        if currentEvent != nil {
+            database.deleteItem(item: currentEvent!)
         }
-        if  eventDescription == "" {
-            errorMesage = errorMesage + " " + ErrorMessage.noDetails.rawValue + ","
-        }
-        if  eventImage == nil {
-            errorMesage = errorMesage + " " + ErrorMessage.noImage.rawValue + ","
-        }
-        if errorMesage != "" {
-            errorMesage.removeLast()
-        }
-        return (errorMesage == "", errorMesage)
     }
     
-    func createEvent(image: NSData?, date: Date?, details: String?, userId: String) -> CheckResult {
+    func createEvent(image: Data?, date: Date?, details: String?, userId: String) -> CheckResult {
         let errorMessage = checkEventData(eventImage: image, eventDate: date, eventDescription: details)
         if  (errorMessage.success)
         {
@@ -91,6 +77,24 @@ final class AddEventPresenter {
         }
     }
     
+    // MARK:  - Private Methods
+    private func checkEventData(eventImage: Data? = nil , eventDate: Date? = nil, eventDescription: String? = "") -> CheckResult {
+        var errorMesage = ""
+        if  eventDate == nil {
+            errorMesage = errorMesage + " " + ErrorMessage.noDate.rawValue + ","
+        }
+        if  eventDescription == "" {
+            errorMesage = errorMesage + " " + ErrorMessage.noDetails.rawValue + ","
+        }
+        if  eventImage == nil {
+            errorMesage = errorMesage + " " + ErrorMessage.noImage.rawValue + ","
+        }
+        if errorMesage != "" {
+            errorMesage.removeLast()
+        }
+        return (errorMesage == "", errorMesage)
+    }
+    
     private func save() {
         let tempData: TempEventData = addEventProtocol.getInputData()
         let result = createEvent(image: tempData.image,
@@ -103,7 +107,6 @@ final class AddEventPresenter {
         } else {
             addEventProtocol.showMessage(text: result.message)
         }
-        
     }
 }
 

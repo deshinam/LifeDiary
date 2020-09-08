@@ -4,10 +4,25 @@ import HorizonCalendar
 
 final class CalendarViewController: UIViewController {
     
-    @IBOutlet var calendarUIView: UIView!
-    private var selectedDay: Day?
+    // MARK:  - IBOutlets
+    @IBOutlet private var calendarUIView: UIView!
+    @IBOutlet private weak var selectedDayLabel: UILabel!
     
-    @IBOutlet weak var selectedDayLabel: UILabel!
+    // MARK:  - Private Properties
+    private var selectedDay: Day?
+    private lazy var calendarView = CalendarView(initialContent: makeContent())
+    private lazy var calendar = Calendar(identifier: .gregorian)
+    private lazy var dayDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = calendar
+        dateFormatter.dateFormat = DateFormatter.dateFormat(
+            fromTemplate: "EEEE, MMM d, yyyy",
+            options: 0,
+            locale: calendar.locale ?? Locale.current)
+        return dateFormatter
+    }()
+    
+    // MARK:  - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.definesPresentationContext = true
@@ -37,22 +52,9 @@ final class CalendarViewController: UIViewController {
                                             object: nil, userInfo: ["selectedDate": dcDate])
             self.dismiss(animated: true, completion: nil)
         }
-        
     }
     
-    private lazy var calendarView = CalendarView(initialContent: makeContent())
-    private lazy var calendar = Calendar(identifier: .gregorian)
-    private lazy var dayDateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = calendar
-        dateFormatter.dateFormat = DateFormatter.dateFormat(
-            fromTemplate: "EEEE, MMM d, yyyy",
-            options: 0,
-            locale: calendar.locale ?? Locale.current)
-        return dateFormatter
-    }()
-    
-    
+    // MARK:  - Private Methods
     private func makeContent() -> CalendarViewContent {
         let startDate = calendar.date(from: DateComponents(year: 2020, month: 01, day: 01))!
         let endDate = calendar.date(from: DateComponents(year: 2021, month: 12, day: 31))!
@@ -95,7 +97,39 @@ final class CalendarViewController: UIViewController {
 // MARK: - DayView
 final class DayView: UIView {
     
-    // MARK: Lifecycle
+    // MARK: Public Properties
+    var dayText: String {
+        get { dayLabel.text ?? "" }
+        set { dayLabel.text = newValue }
+    }
+    var dayAccessibilityText: String?
+    var isHighlighted = false {
+        didSet {
+            updateHighlightIndicator()
+        }
+    }
+    
+    // MARK: Private Properties
+    private lazy var dayLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18)
+        if #available(iOS 13.0, *) {
+            label.textColor = .label
+        } else {
+            label.textColor = .black
+        }
+        return label
+    }()
+    
+    // MARK:  - Lifecycle
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        dayLabel.frame = bounds
+        layer.cornerRadius = min(bounds.width, bounds.height) / 2
+    }
+    
+    // MARK:  - Initializers
     init(isSelectedStyle: Bool) {
         super.init(frame: .zero)
         
@@ -109,38 +143,7 @@ final class DayView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Internal
-    var dayText: String {
-        get { dayLabel.text ?? "" }
-        set { dayLabel.text = newValue }
-    }
-    
-    var dayAccessibilityText: String?
-    
-    var isHighlighted = false {
-        didSet {
-            updateHighlightIndicator()
-        }
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        dayLabel.frame = bounds
-        layer.cornerRadius = min(bounds.width, bounds.height) / 2
-    }
-    
-    // MARK: Private
-    private lazy var dayLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18)
-        if #available(iOS 13.0, *) {
-            label.textColor = .label
-        } else {
-            label.textColor = .black
-        }
-        return label
-    }()
+    // MARK: Private Methods
     
     private func updateHighlightIndicator() {
         backgroundColor = isHighlighted ? UIColor.black.withAlphaComponent(0.1) : .clear
@@ -154,8 +157,6 @@ extension DayView {
         get { true }
         set { }
     }
-    
-    //в extension нельзя обычные свойства задавать
     
     override var accessibilityLabel: String? {
         get { dayAccessibilityText ?? dayText }

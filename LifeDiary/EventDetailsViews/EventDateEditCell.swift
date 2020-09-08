@@ -1,10 +1,14 @@
 import UIKit
 
-final class EventDateEditCell: UITableViewCell, EditCellProtocol {
+final class EventDateEditCell: UITableViewCell {
     
-    @IBOutlet weak var dateText: UIButton!
+    // MARK:  - IBOutlets
+    @IBOutlet private weak var dateText: UIButton!
+    
+    // MARK:  - Public Properties
     var eventDate: Date?
     
+    // MARK:  - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         customizeButton()
@@ -14,26 +18,17 @@ final class EventDateEditCell: UITableViewCell, EditCellProtocol {
                                                object: nil)
     }
     
-    @objc func updateDate(_ sender: Notification) {
-        if let date = sender.userInfo?["selectedDate"] as? Date {
-            eventDate = date
-            setDate(eventDate as Any)
-        }
-    }
-    
+    // MARK:  - Public Methods
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    func setDate(_ data: Any) {
-        dateText.setTitleColor(Constants.grayColor, for: .normal)
-        eventDate = data as? Date
-        dateText.setTitle(DateFormatter().getFullDate(from: eventDate!), for: .normal)
-    }
-    
-    @IBAction func dateButtonTapped(_ sender: UIButton) {
-        NotificationCenter.default.post(name:  .showCalendar,
-                                        object: nil)
+    // MARK:  - Private Methods
+    @objc private func updateDate(_ sender: Notification) {
+        if let date = sender.userInfo?["selectedDate"] as? Date {
+            eventDate = date
+            setDate(eventDate as Any)
+        }
     }
     
     private func customizeButton() {
@@ -44,4 +39,17 @@ final class EventDateEditCell: UITableViewCell, EditCellProtocol {
         dateText.contentHorizontalAlignment = .left
     }
     
+    // MARK:  - IBActions
+    @IBAction private func dateButtonTapped(_ sender: UIButton) {
+        NotificationCenter.default.post(name:  .showCalendar,
+                                        object: nil)
+    }
+}
+
+extension EventDateEditCell: EditCellProtocol {
+    func setDate(_ data: Any) {
+        dateText.setTitleColor(Constants.grayColor, for: .normal)
+        eventDate = data as? Date
+        dateText.setTitle(DateFormatter().getFullDate(from: eventDate!), for: .normal)
+    }
 }
