@@ -3,7 +3,7 @@ import GoogleSignIn
 
 final class LoginPresenter: NSObject {
     
-    private var view : LoginViewInput?
+    private weak var view : LoginViewInput?
     
     convenience override init() {
         self.init(loginProtocol: nil)

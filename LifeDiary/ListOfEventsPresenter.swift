@@ -4,18 +4,21 @@ import GoogleSignIn
 
 final class ListOfEventsPresenter: EventsProtocol {
     
-    private var vc: MainProtocol
+    private weak var view: MainProtocol?
     private var database: EventsDatabase = EventsDatabase.shared
     private var events: Results <Event>?
     
     init (mainProtocol: MainProtocol) {
-        vc = mainProtocol
+        view = mainProtocol
         database.set(newSubscriber: self)
     }
     
     func updateEventData() {
         self.events = database.loadEvents()
-        vc.updateTableView()
+        if view != nil {
+            view!.updateTableView()
+        }
+            
     }
     
     func getEventsCount() -> Int? {
@@ -31,7 +34,7 @@ final class ListOfEventsPresenter: EventsProtocol {
     }
 }
 
-protocol MainProtocol {
+protocol MainProtocol: class {
     func updateTableView()
 }
 

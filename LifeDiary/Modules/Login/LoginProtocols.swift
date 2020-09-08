@@ -1,5 +1,5 @@
 import Foundation
 
-protocol LoginViewInput {
+protocol LoginViewInput: class {
     func goToApp()
 }
