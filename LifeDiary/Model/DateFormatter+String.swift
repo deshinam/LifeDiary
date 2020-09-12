@@ -1,7 +1,7 @@
 import Foundation
 
 extension DateFormatter {
-    func getDay(date: Date) -> String {
+    func getDay(from date: Date) -> String {
         self.dateFormat = "dd"
         return self.string(from: date)
     }

@@ -21,7 +21,6 @@ struct EventsDatabase {
         if !(EventsDatabase.shared.events!.isEmpty) {
             EventsDatabase.shared.events = EventsDatabase.shared.events!.sorted(byKeyPath: "date", ascending: false)
         }
-        
         return EventsDatabase.shared.events
     }
     

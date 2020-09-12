@@ -5,17 +5,18 @@ import GoogleSignIn
 final class ListOfEventsPresenter: EventsProtocol {
     
     // MARK:  - Private Properties
-    private weak var view: MainProtocol?
+    private weak var view: ListOfEventsInput?
     private var database: EventsDatabase = EventsDatabase.shared
     private var events: Results <Event>?
     
     // MARK:  - Initializers
-    init (mainProtocol: MainProtocol) {
-        view = mainProtocol
+    init (view: ListOfEventsInput) {
+        self.view = view
         database.set(newSubscriber: self)
     }
-    
-    // MARK:  - Public Methods
+}
+
+extension ListOfEventsPresenter: ListOfEventsOutput {
     func updateEventData() {
         self.events = database.loadEvents()
         if view != nil {
@@ -34,10 +35,6 @@ final class ListOfEventsPresenter: EventsProtocol {
     func signOut() {
         GIDSignIn.sharedInstance()?.signOut()
     }
-}
-
-protocol MainProtocol: class {
-    func updateTableView()
 }
 
 

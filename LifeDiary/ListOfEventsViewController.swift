@@ -1,19 +1,19 @@
 import UIKit
 import RealmSwift
 
-final class ListOfEventsViewController: UIViewController, UITableViewDelegate, MainProtocol {
+final class ListOfEventsViewController: UIViewController, UITableViewDelegate, ListOfEventsInput {
     
     // MARK:  - IBOutlets
     @IBOutlet private weak var eventTableView: UITableView!
     
     // MARK:  - Private Properties
-    private var presenter: ListOfEventsPresenter?
+    private var presenter: ListOfEventsOutput?
     
     // MARK:  - Lyfecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         customizeScreen()
-        presenter = ListOfEventsPresenter(mainProtocol: self)
+        presenter = ListOfEventsPresenter(view: self)
         eventTableView.dataSource = self
         eventTableView.delegate = self
         let listOfEventsCells = ListOfEventsCells()
@@ -62,7 +62,7 @@ extension ListOfEventsViewController: UITableViewDataSource {
         
         if let item = presenter?.getEventy(by: indexPath.row) {
             let df = DateFormatter()
-            cell.eventDate.text = df.getDay(date: item.date)
+            cell.eventDate.text = df.getDay(from: item.date)
             cell.eventMonth.text = df.getMonth(from: item.date)
             cell.eventImage.image = UIImage(data: (item.image) as Data)
             cell.eventDescription.text = item.details

@@ -7,14 +7,14 @@ final class LoginViewController: UIViewController {
     @IBOutlet private weak var signInButton: GIDSignInButton!
     
     // MARK:  - Private properties
-    private var loginPresenter: LoginPresenter?
+    private var presenter: LoginViewOutput?
     
     // MARK:  - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginPresenter = LoginPresenter(loginProtocol: self)
-        if loginPresenter != nil {
-            loginPresenter!.viewDidLoad()
+        presenter = LoginPresenter(view: self)
+        if presenter != nil {
+            presenter!.viewDidLoad()
         }
     }
 

@@ -21,6 +21,5 @@ final class GoogleSignIn {
             name: user.profile.name
         )
         return true
-        
     }
 }

@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 typealias TempEventData = (image: Data?, date: Date?, details: String?, userId: String)
 
-final class EventDetailsViewController: UIViewController, UITableViewDelegate, UIImagePickerControllerDelegate, AddEventProtocol, UINavigationControllerDelegate {
+final class EventDetailsViewController: UIViewController, UITableViewDelegate, UIImagePickerControllerDelegate, AddEventViewInput, UINavigationControllerDelegate {
     
     // MARK:  - IBOutlets
     @IBOutlet private weak var errorLabel: UILabel!
@@ -10,13 +10,21 @@ final class EventDetailsViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet private weak var eventTableViewBottomConstraint: NSLayoutConstraint!
     
     // MARK:  - Private Properties
+    private let eventImageCell = "EventImageCell"
+    private let eventDateEditCell = "EventDateEditCell"
+    private let eventDateShowCell = "EventDateShowCell"
+    private let eventDetailsEditCell = "EventDetailsEditCell"
+    private let eventDetailsShowCell = "EventDetailsShowCell"
+    
     private var actionButton: UIBarButtonItem?
     private var imagePicker = UIImagePickerController()
-    private var addEventPresenter: AddEventPresenter?
-    private var eventDetailsCellArray: [UITableViewCell] = []
+    private var presenter: AddEventViewOutput?
     private var image: Data?
     private let keyboardHeight: CGFloat = 200
     private let eventTableViewBottomConstraintStart: CGFloat = 30
+    private let cellCount = 3
+    private let imageCellIndex = 0
+    private let detailsCellIndex = 2
     
     // MARK:  - Lifecycle
     override func viewDidLoad() {
@@ -24,9 +32,8 @@ final class EventDetailsViewController: UIViewController, UITableViewDelegate, U
         customizeScreen()
         eventDetailsTableView.dataSource = self
         eventDetailsTableView.delegate = self
-        let eventDetailsCells = EventCellsFactory()
-        eventDetailsCells.registerCells(eventDetailsTableView)
-        addEventPresenter?.updateUI()
+        registerCells()
+        presenter?.updateUI()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(showCalendar(_:)),
                                                name: .showCalendar,
@@ -63,10 +70,6 @@ final class EventDetailsViewController: UIViewController, UITableViewDelegate, U
         return eventDetailsTableView
     }
     
-    func setCells(eventDetailsCellArray: [UITableViewCell]) {
-        self.eventDetailsCellArray = eventDetailsCellArray
-    }
-    
     func reloadData() {
         eventDetailsTableView.reloadData()
     }
@@ -84,8 +87,8 @@ final class EventDetailsViewController: UIViewController, UITableViewDelegate, U
         errorLabel.isHidden = true
     }
     
-    func setPresenter(addEventPresenter: AddEventPresenter) {
-        self.addEventPresenter = addEventPresenter
+    func setPresenter(presenter: AddEventViewOutput) {
+        self.presenter = presenter
     }
     
     func dismiss() {
@@ -94,25 +97,35 @@ final class EventDetailsViewController: UIViewController, UITableViewDelegate, U
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
         if let userPickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            (eventDetailsCellArray[0] as! EventImageCell).eventPhoto.contentMode = .scaleAspectFit
-            (eventDetailsCellArray[0] as! EventImageCell).eventPhoto.image = userPickedImage
+            (getCell(with: imageCellIndex) as! EventImageCell).eventPhoto.contentMode = .scaleAspectFit
+            (getCell(with: imageCellIndex) as! EventImageCell).eventPhoto.image = userPickedImage
             image = Data (userPickedImage.jpegData (compressionQuality: 0.9)!)
         }
         imagePicker.dismiss(animated: true, completion: nil)
     }
     
     // MARK:  - Private Methods
+    private func registerCells() {
+        [eventImageCell,eventDateEditCell,eventDateShowCell,eventDetailsEditCell,eventDetailsShowCell].forEach({
+            eventDetailsTableView.register(UINib (nibName: $0, bundle: nil) , forCellReuseIdentifier: $0)
+        })
+    }
+    
     private func customizeScreen() {
         navigationItem.backBarButtonItem?.title = "Close"
         navigationController?.navigationBar.tintColor = .systemTeal
         actionButton = UIBarButtonItem(title: "", style: .done, target: self, action: #selector(actionButtonTapped(_:)))
-        
         navigationItem.rightBarButtonItem = actionButton
         errorLabel.isHidden = true
     }
     
+    private func getCell(with row: Int ) -> UITableViewCell? {
+        let cellIndexPath = IndexPath(row: row, section: 0)
+        return eventDetailsTableView.cellForRow(at: cellIndexPath)!
+    }
+    
     @objc private func keyboardWillShow(_ sender: Notification) {
-        ((eventDetailsCellArray[2]) as! EventDetailsEditCell).descriptionTextView.becomeFirstResponder()
+        (getCell(with: detailsCellIndex) as! EventDetailsEditCell).descriptionTextView.becomeFirstResponder()
         eventTableViewBottomConstraint.constant = eventTableViewBottomConstraintStart + keyboardHeight
         let offset = CGPoint(x: 0, y: eventDetailsTableView.contentSize.height)
         eventDetailsTableView.setContentOffset(offset, animated: true)
@@ -129,7 +142,7 @@ final class EventDetailsViewController: UIViewController, UITableViewDelegate, U
     }
     
     @objc private func actionButtonTapped(_ sender: UIBarButtonItem) {
-        addEventPresenter?.actionButtonTapped()
+        presenter?.actionButtonTapped()
     }
 
     @objc private func addPhotoButtonTapped(_ sender: Any?) {
@@ -151,7 +164,7 @@ final class EventDetailsViewController: UIViewController, UITableViewDelegate, U
     
     // MARK:  - IBActions
     @IBAction private func eventDeleteButtonTapped(_ sender: UIButton) {
-        addEventPresenter?.deleteItem()
+        presenter?.deleteItem()
         navigationController?.popViewController(animated: true)
     }
 }
@@ -159,13 +172,49 @@ final class EventDetailsViewController: UIViewController, UITableViewDelegate, U
 // MARK:  - Table View Data Source
 extension EventDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return eventDetailsCellArray.count
+        return cellCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return eventDetailsCellArray[indexPath.row]
+        var cell = UITableViewCell()
+        guard presenter != nil else {
+            return cell
+        }
+        let actionType = presenter!.getCurrentType()
+        switch  actionType {
+           
+        case .create, .edit:
+            switch indexPath.row {
+            case 0: cell = tableView.dequeueReusableCell(withIdentifier: eventImageCell, for: indexPath)
+            case 1: cell = tableView.dequeueReusableCell(withIdentifier: eventDateEditCell, for: indexPath)
+            case 2: cell = tableView.dequeueReusableCell(withIdentifier: eventDetailsEditCell, for: indexPath)
+            default:
+                break
+            }
+        case .show:
+            switch indexPath.row {
+                    case 0: cell = tableView.dequeueReusableCell(withIdentifier: eventImageCell, for: indexPath)
+                    case 1: cell = tableView.dequeueReusableCell(withIdentifier: eventDateShowCell, for: indexPath)
+                    case 2: cell = tableView.dequeueReusableCell(withIdentifier: eventDetailsShowCell, for: indexPath)
+                    default:
+                        break
+                    }
+        }
+        
+        if let event = presenter?.getCurrentEvent() {
+            switch indexPath.row {
+            case 0: (cell as! EventImageCell).eventPhoto.image =  UIImage(data: (event.image) as Data)
+            case 1: (cell as! EditCellProtocol).setDate(event.date)
+            case 2: (cell as! EditCellProtocol).setDate(event.details)
+            default:
+                break
+            }
+            if actionType == .show && indexPath.row == 0 {
+                (cell as! EventImageCell).imageButton.isHidden = true
+            }
+        }
+        
+        return cell
     }
     
 }
-
-

@@ -1,15 +1,15 @@
 import Foundation
 import GoogleSignIn
 
-final class LoginPresenter: NSObject {
+final class LoginPresenter: NSObject, LoginViewOutput {
     
     // MARK:  - Private properties
     private weak var view : LoginViewInput?
 
     // MARK:  - Initializers
-    init(loginProtocol: LoginViewInput?) {
+    init(view: LoginViewInput?) {
         super.init()
-        self.view = loginProtocol
+        self.view = view
         GIDSignIn.sharedInstance().clientID = Constants.googleSDKClientId1 + Constants.googleSDKClientId2
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = view as? UIViewController
@@ -17,7 +17,7 @@ final class LoginPresenter: NSObject {
     }
     
     convenience override init() {
-        self.init(loginProtocol: nil)
+        self.init(view: nil)
     }
     
     // MARK:  - Lifecycle

@@ -19,6 +19,7 @@
 		19D0029724799891003E9D8A /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19D0029524799891003E9D8A /* EventCell.xib */; };
 		19D0029C247ADA9C003E9D8A /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D0029B247ADA9C003E9D8A /* Event.swift */; };
 		51656889C8D7081A127EC244 /* Pods_LifeDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C28CBFC03A15CDC135634DC /* Pods_LifeDiary.framework */; };
+		C70D1EFC2507E19E001A5567 /* LIstOfEventsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70D1EFB2507E19E001A5567 /* LIstOfEventsProtocols.swift */; };
 		C71E4F2124CEE78E00B907EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71E4F1F24CEE78E00B907EF /* Main.storyboard */; };
 		C71E4F2D24D1943000B907EF /* AddEventControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71E4F2C24D1942F00B907EF /* AddEventControllerType.swift */; };
 		C71E4F2F24D1DECD00B907EF /* GoogleSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71E4F2E24D1DECD00B907EF /* GoogleSignIn.swift */; };
@@ -47,7 +48,6 @@
 		C7D690E925051C340076AB2B /* EventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D690E825051C340076AB2B /* EventsProtocol.swift */; };
 		C7FD72A824FA87D100A9BBEA /* AddDetailsViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FD72A724FA87D100A9BBEA /* AddDetailsViewBuilder.swift */; };
 		C7FD72AA24FBE64F00A9BBEA /* StoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FD72A924FBE64F00A9BBEA /* StoryboardExtension.swift */; };
-		C7FD72AC24FD124700A9BBEA /* EventCellsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FD72AB24FD124700A9BBEA /* EventCellsFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +66,7 @@
 		19D0029B247ADA9C003E9D8A /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		1C28CBFC03A15CDC135634DC /* Pods_LifeDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C64A7AEDA41AE78E9EE90D71 /* Pods-LifeDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeDiary.debug.xcconfig"; path = "Target Support Files/Pods-LifeDiary/Pods-LifeDiary.debug.xcconfig"; sourceTree = "<group>"; };
+		C70D1EFB2507E19E001A5567 /* LIstOfEventsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LIstOfEventsProtocols.swift; sourceTree = "<group>"; };
 		C71E4F2024CEE78E00B907EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C71E4F2C24D1942F00B907EF /* AddEventControllerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventControllerType.swift; sourceTree = "<group>"; };
 		C71E4F2E24D1DECD00B907EF /* GoogleSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignIn.swift; sourceTree = "<group>"; };
@@ -94,7 +95,6 @@
 		C7D690E825051C340076AB2B /* EventsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsProtocol.swift; sourceTree = "<group>"; };
 		C7FD72A724FA87D100A9BBEA /* AddDetailsViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDetailsViewBuilder.swift; sourceTree = "<group>"; };
 		C7FD72A924FBE64F00A9BBEA /* StoryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardExtension.swift; sourceTree = "<group>"; };
-		C7FD72AB24FD124700A9BBEA /* EventCellsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellsFactory.swift; sourceTree = "<group>"; };
 		D77EE53CE058D01B822B1D89 /* Pods-LifeDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeDiary.release.xcconfig"; path = "Target Support Files/Pods-LifeDiary/Pods-LifeDiary.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,7 +193,6 @@
 			children = (
 				C7FD72A724FA87D100A9BBEA /* AddDetailsViewBuilder.swift */,
 				C77C45F024D3071300C0B93A /* EventDetailsViewController.swift */,
-				C7FD72AB24FD124700A9BBEA /* EventCellsFactory.swift */,
 				C77C460324D4147900C0B93A /* CalendarViewController.swift */,
 				C77C460224D30CE800C0B93A /* EventDetailsViews */,
 			);
@@ -235,6 +234,7 @@
 		C7FD72AD24FECB3000A9BBEA /* ListOfEvents */ = {
 			isa = PBXGroup;
 			children = (
+				C70D1EFB2507E19E001A5567 /* LIstOfEventsProtocols.swift */,
 				1980E68D249F70690096D534 /* ListOfEventsPresenter.swift */,
 				C77C460A24D9DC8000C0B93A /* ListOfEventsContoller */,
 			);
@@ -257,10 +257,10 @@
 		C7FD72B024FECBBC00A9BBEA /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				C7D690E4250517FD0076AB2B /* LoginProtocols.swift */,
 				C71E4F3024D2F0DC00B907EF /* LoginPresenter.swift */,
 				C79DCEE624CAC9BC00163DD1 /* LoginViewController.swift */,
 				C71E4F2E24D1DECD00B907EF /* GoogleSignIn.swift */,
-				C7D690E4250517FD0076AB2B /* LoginProtocols.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -416,6 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C77C460424D4147900C0B93A /* CalendarViewController.swift in Sources */,
+				C70D1EFC2507E19E001A5567 /* LIstOfEventsProtocols.swift in Sources */,
 				C77C45EE24D3067300C0B93A /* EventImageCell.swift in Sources */,
 				196A36C824794BCD0081949B /* ListOfEventsViewController.swift in Sources */,
 				C77C461124DAE4F800C0B93A /* DateFormatter+String.swift in Sources */,
@@ -424,7 +425,6 @@
 				C71E4F3124D2F0DC00B907EF /* LoginPresenter.swift in Sources */,
 				C77C460024D30A2900C0B93A /* EventDetailsShowCell.swift in Sources */,
 				C77C460D24DA7BFA00C0B93A /* ListOfEventsCells.swift in Sources */,
-				C7FD72AC24FD124700A9BBEA /* EventCellsFactory.swift in Sources */,
 				C7FD72AA24FBE64F00A9BBEA /* StoryboardExtension.swift in Sources */,
 				196A36C424794BCD0081949B /* AppDelegate.swift in Sources */,
 				1980E690249F7A1B0096D534 /* EventsDatabase.swift in Sources */,
