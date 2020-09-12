@@ -136,7 +136,7 @@ final class EventDetailsViewController: UIViewController, UITableViewDelegate, U
     }
     
     @objc private func showCalendar(_ sender: Any?) {
-        let calendarVC = UIStoryboard().getControllerBy(id: "calendarViewController")
+        let calendarVC = UIStoryboard().getController(by: "calendarViewController")
         calendarVC.modalPresentationStyle = .popover
         present(calendarVC, animated: true, completion: nil)
     }

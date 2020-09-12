@@ -14,7 +14,6 @@ final class GoogleSignIn {
         else {
             return false
         }
-        
         AppData.sharedCurrentUser.user = User(
             userId: user.userID,
             email: user.profile.email,

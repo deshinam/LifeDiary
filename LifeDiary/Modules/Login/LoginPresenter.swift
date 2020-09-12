@@ -5,7 +5,7 @@ final class LoginPresenter: NSObject, LoginViewOutput {
     
     // MARK:  - Private properties
     private weak var view : LoginViewInput?
-
+    
     // MARK:  - Initializers
     init(view: LoginViewInput?) {
         super.init()
@@ -26,7 +26,7 @@ final class LoginPresenter: NSObject, LoginViewOutput {
             view?.goToApp()
         }
     }
-
+    
     // MARK:  - Private Methods
     private func signIn() -> Bool {
         return GoogleSignIn().toggleAuthUI()
@@ -35,24 +35,20 @@ final class LoginPresenter: NSObject, LoginViewOutput {
 
 extension LoginPresenter: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if error == nil {
-            guard
-                let id = user.userID,
-                let fullName = user.profile.name,
-                let email = user.profile.email
+        guard
+            error == nil,
+            let id = user.userID,
+            let fullName = user.profile.name,
+            let email = user.profile.email
             else {
+                print("\(error.localizedDescription)")
                 return
-            }
-            AppData.sharedCurrentUser.user =  User(userId: id,
-                                                     email: email,
-                                                     name: fullName)
-            view?.goToApp()
-
-        } else {
-            print("\(error.localizedDescription)")
         }
+        AppData.sharedCurrentUser.user =  User(userId: id,
+                                               email: email,
+                                               name: fullName)
+        view?.goToApp()
     }
-    
 }
 
 

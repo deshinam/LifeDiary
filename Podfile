@@ -9,6 +9,5 @@ pod 'RealmSwift'
 pod 'GoogleSignIn'
 pod 'HorizonCalendar'
 
-
 end
 

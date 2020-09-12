@@ -47,7 +47,6 @@ final class EventDateEditCell: UITableViewCell {
 }
 
 extension EventDateEditCell: EditCellProtocol {
-    
     func setDate(_ data: Any) {
         dateText.setTitleColor(Constants.grayColor, for: .normal)
         eventDate = data as? Date
