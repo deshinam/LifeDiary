@@ -22,13 +22,11 @@ PODS:
   - Realm/Headers (5.3.2)
   - RealmSwift (5.3.2):
     - Realm (= 5.3.2)
-  - SwiftLint (0.40.2)
 
 DEPENDENCIES:
   - GoogleSignIn
   - HorizonCalendar
   - RealmSwift
-  - SwiftLint
 
 SPEC REPOS:
   trunk:
@@ -39,7 +37,6 @@ SPEC REPOS:
     - HorizonCalendar
     - Realm
     - RealmSwift
-    - SwiftLint
 
 SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
@@ -49,8 +46,7 @@ SPEC CHECKSUMS:
   HorizonCalendar: b4bfb641bce469b0fde096e3018a1305772028cc
   Realm: c6794276ca8884808ba168a22f9d71362b170b85
   RealmSwift: 42ec6cec3170aeeda407f797f07268a7d055ebc7
-  SwiftLint: 1216c910d27c2633ade33b4f071bb6b930982e62
 
-PODFILE CHECKSUM: f70faa7b2179166ae2ed5d35447d4fac69d40aee
+PODFILE CHECKSUM: b4b8970678704cc5e69f93332e876297fb79ac5d
 
 COCOAPODS: 1.9.3

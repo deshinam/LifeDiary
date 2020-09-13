@@ -140,8 +140,8 @@
 		196A36C224794BCD0081949B /* LifeDiary */ = {
 			isa = PBXGroup;
 			children = (
+				C7FDDAE5250E0B4300211691 /* Utilits */,
 				C7D690E32505119D0076AB2B /* Application */,
-				C77C460F24DAE4B300C0B93A /* Utilits */,
 				C7FD72AF24FECBB300A9BBEA /* Modules */,
 				19D0029A247ACCED003E9D8A /* Model */,
 				196A36CF24794BD00081949B /* Assets.xcassets */,
@@ -188,40 +188,6 @@
 			path = EventDetailsViews;
 			sourceTree = "<group>";
 		};
-		C77C460924D9DC5D00C0B93A /* EventDetailsViewController */ = {
-			isa = PBXGroup;
-			children = (
-				C7FD72A724FA87D100A9BBEA /* AddDetailsViewBuilder.swift */,
-				C77C45F024D3071300C0B93A /* EventDetailsViewController.swift */,
-				C77C460324D4147900C0B93A /* CalendarViewController.swift */,
-				C77C460224D30CE800C0B93A /* EventDetailsViews */,
-			);
-			name = EventDetailsViewController;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		C77C460A24D9DC8000C0B93A /* ListOfEventsContoller */ = {
-			isa = PBXGroup;
-			children = (
-				196A36C724794BCD0081949B /* ListOfEventsViewController.swift */,
-				C77C460C24DA7BFA00C0B93A /* ListOfEventsCells.swift */,
-				19D0029424799891003E9D8A /* EventCell.swift */,
-				19D0029524799891003E9D8A /* EventCell.xib */,
-			);
-			name = ListOfEventsContoller;
-			sourceTree = "<group>";
-		};
-		C77C460F24DAE4B300C0B93A /* Utilits */ = {
-			isa = PBXGroup;
-			children = (
-				C77C461024DAE4F800C0B93A /* DateFormatter+String.swift */,
-				C792FFA724EADE5900F95775 /* Constants.swift */,
-				C7FD72A924FBE64F00A9BBEA /* StoryboardExtension.swift */,
-			);
-			name = Utilits;
-			path = Model;
-			sourceTree = "<group>";
-		};
 		C7D690E32505119D0076AB2B /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,25 +197,14 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		C7FD72AD24FECB3000A9BBEA /* ListOfEvents */ = {
-			isa = PBXGroup;
-			children = (
-				C70D1EFB2507E19E001A5567 /* LIstOfEventsProtocols.swift */,
-				1980E68D249F70690096D534 /* ListOfEventsPresenter.swift */,
-				C77C460A24D9DC8000C0B93A /* ListOfEventsContoller */,
-			);
-			name = ListOfEvents;
-			path = ..;
-			sourceTree = "<group>";
-		};
 		C7FD72AF24FECBB300A9BBEA /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				C7FDDAE6250E0BEF00211691 /* ListOfEvents */,
 				196A36D124794BD00081949B /* LaunchScreen.storyboard */,
 				C71E4F1F24CEE78E00B907EF /* Main.storyboard */,
 				C7FD72B024FECBBC00A9BBEA /* Login */,
 				C7FD72B124FECBE200A9BBEA /* EventDetails */,
-				C7FD72AD24FECB3000A9BBEA /* ListOfEvents */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -268,12 +223,54 @@
 		C7FD72B124FECBE200A9BBEA /* EventDetails */ = {
 			isa = PBXGroup;
 			children = (
+				C7FDDAE8250E0CA900211691 /* EventDetailsViewController */,
+				C77C460224D30CE800C0B93A /* EventDetailsViews */,
 				1980E691249F7ECC0096D534 /* AddEventPresenter.swift */,
-				C77C460924D9DC5D00C0B93A /* EventDetailsViewController */,
 				C71E4F2C24D1942F00B907EF /* AddEventControllerType.swift */,
 				C7D690E6250519300076AB2B /* EventDetailsProtocols.swift */,
 			);
 			path = EventDetails;
+			sourceTree = "<group>";
+		};
+		C7FDDAE5250E0B4300211691 /* Utilits */ = {
+			isa = PBXGroup;
+			children = (
+				C77C461024DAE4F800C0B93A /* DateFormatter+String.swift */,
+				C792FFA724EADE5900F95775 /* Constants.swift */,
+				C7FD72A924FBE64F00A9BBEA /* StoryboardExtension.swift */,
+			);
+			path = Utilits;
+			sourceTree = "<group>";
+		};
+		C7FDDAE6250E0BEF00211691 /* ListOfEvents */ = {
+			isa = PBXGroup;
+			children = (
+				C7FDDAE7250E0C2300211691 /* ListOfEventsController */,
+				C70D1EFB2507E19E001A5567 /* LIstOfEventsProtocols.swift */,
+				1980E68D249F70690096D534 /* ListOfEventsPresenter.swift */,
+			);
+			path = ListOfEvents;
+			sourceTree = "<group>";
+		};
+		C7FDDAE7250E0C2300211691 /* ListOfEventsController */ = {
+			isa = PBXGroup;
+			children = (
+				196A36C724794BCD0081949B /* ListOfEventsViewController.swift */,
+				C77C460C24DA7BFA00C0B93A /* ListOfEventsCells.swift */,
+				19D0029424799891003E9D8A /* EventCell.swift */,
+				19D0029524799891003E9D8A /* EventCell.xib */,
+			);
+			path = ListOfEventsController;
+			sourceTree = "<group>";
+		};
+		C7FDDAE8250E0CA900211691 /* EventDetailsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C7FD72A724FA87D100A9BBEA /* AddDetailsViewBuilder.swift */,
+				C77C45F024D3071300C0B93A /* EventDetailsViewController.swift */,
+				C77C460324D4147900C0B93A /* CalendarViewController.swift */,
+			);
+			path = EventDetailsViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
